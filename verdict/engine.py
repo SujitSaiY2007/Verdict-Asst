@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
-from pydantic_ai.providers.openai_compatible import OpenAICompatibleProvider
+from pydantic_ai.providers.openai import OpenAIProvider
 
 load_dotenv()
 
@@ -90,8 +90,7 @@ def _cooldown(name: str):
 
 
 def _make_agent(name: str, model: str, url: str, credential: str) -> Agent:
-    provider = OpenAICompatibleProvider(
-        name=name,
+    provider = OpenAIProvider(
         base_url=url,
         api_key=credential or "ollama",
     )
